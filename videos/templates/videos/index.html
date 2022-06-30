@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Quienes somos{% endblock%}
+
+{% block contenido %}
+    LO QUE SEA!
+    {{titulo}}
+    {% if variable >= 0 %}
+        <h3>VARIABLE MAYOR QUE 0</h3>
+    {% else %}
+        <h3>VARIABLE MENOR QUE 0</h3>
+    {% endif%}
+    <p>{{variable}}</p>
+{% endblock %}
+
+    
