@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
 from videos.forms import VideoForm
+from videos.models import Video
 
 # Create your views here.
 def index(request):
@@ -14,35 +15,7 @@ def quienes_somos(request):
 
 def listado(request):
     # IR A BUSCAR A LA BASE y RENDERIZAR PELICULAS
-    peliculas = [
-        {
-            'id':1,
-            'nombre':'El senor de los anillos 1',
-            'descripcion':'2000 +13 180m',
-            'imagen':'imagen.jpg',
-
-        },
-        {
-            'id':2,
-            'nombre':'harry potter',
-            'descripcion':'2000 +13 180m',
-            'imagen':'imagen.jpg',
-
-        },
-        {
-            'id':3,
-            'nombre':'Toy Story 3',
-            'descripcion':'2000 +13 180m',
-            'imagen':'imagen.jpg',
-        },
-        {
-            'id':4,
-            'nombre':'Toy Story 1',
-            'descripcion':'2000 +13 180m',
-            'imagen':'imagen.jpg',
-        }
-
-    ]
+    peliculas = Video.objects.all
     return render(request,'videos/listado.html',{'peliculas':peliculas})
 
 def crear(request):
