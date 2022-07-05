@@ -1,6 +1,19 @@
 <form action="" method="post" enctype="multipart/form-data">
 
-    <div class="div-field">
-        <input type="text" name="nombre" class="input-contacto">
-    </div>
+    {% csrf_token %}
+
+    {% for campo in formulario %}
+        <div class="div-field">
+            <label for="">{{campo.label}}</label>
+            <input 
+                type="{{campo.field.widget.input_type}}" 
+                name="{{campo.name}}" 
+                id="{{campo.name}}"
+                class="input-contacto"
+                placeholder="Ingrese {{campo.name}}"
+            >
+        </div>
+        <div>{{campo.errors}}</div>
+    {% endfor %}
+    <input type="submit" value="Guardar" class="btn btn-success">
 </form>

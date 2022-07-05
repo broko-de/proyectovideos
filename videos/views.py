@@ -1,5 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+
+from videos.forms import VideoForm
 
 # Create your views here.
 def index(request):
@@ -44,7 +46,11 @@ def listado(request):
     return render(request,'videos/listado.html',{'peliculas':peliculas})
 
 def crear(request):
-    return render(request,'videos/crear.html')
+    formulario = VideoForm(request.POST or None,request.FILES or None)
+    if formulario.is_valid():
+        formulario.save()
+        return redirect('listado_pelicula')
+    return render(request,'videos/crear.html',{'formulario':formulario})
 
 
 def editar(request):
