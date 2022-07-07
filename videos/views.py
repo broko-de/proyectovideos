@@ -26,8 +26,13 @@ def crear(request):
     return render(request,'videos/crear.html',{'formulario':formulario})
 
 
-def editar(request):
-    return render(request,'videos/editar.html')
+def editar(request,id_video):
+    video = Video.objects.get(id=id_video)
+    formulario = VideoForm(request.POST or None,request.FILES or None,instance=video)
+    if formulario.is_valid():
+        formulario.save()
+        return redirect('listado_video')
+    return render(request,'videos/editar.html',{'formulario':formulario})
 
 def eliminar(request,id_video):
     video = Video.objects.get(id=id_video)

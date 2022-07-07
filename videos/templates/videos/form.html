@@ -5,15 +5,20 @@
     {% for campo in formulario %}
         <div class="div-field">
             <label for="">{{campo.label}}</label>
+            {% if campo.field.widget.input_type == 'file' and campo.value %}
+                <img src="{{campo.value.url}}" alt="{{campo.name}}" width="20%">
+            {% endif %}
             <input 
                 type="{{campo.field.widget.input_type}}" 
                 name="{{campo.name}}" 
                 id="{{campo.name}}"
                 class="input-contacto"
                 placeholder="Ingrese {{campo.name}}"
+                value="{{ campo.value | default:'' }}"
             >
         </div>
         <div>{{campo.errors}}</div>
     {% endfor %}
     <input type="submit" value="Guardar" class="btn btn-success">
+    <a href="{% url 'listado_video' %}" class="btn btn-secondary">Cancelar</a>
 </form>
