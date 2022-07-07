@@ -27,7 +27,10 @@ def crear(request):
 
 
 def editar(request,id_video):
-    video = Video.objects.get(id=id_video)
+    try:
+        video = Video.objects.get(id=id_video)
+    except Video.DoesNotExist:
+        return render(request,'videos/404.html')
     formulario = VideoForm(request.POST or None,request.FILES or None,instance=video)
     if formulario.is_valid():
         formulario.save()
