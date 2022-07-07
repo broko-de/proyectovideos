@@ -17,5 +17,3 @@ class Video(models.Model):
     def delete(self,using=None,keep_parents=False):
         self.imagen.storage.delete(self.imagen.name) #borrado fisico
         super().delete()
-
-    

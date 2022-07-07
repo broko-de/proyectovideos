@@ -11,6 +11,7 @@ urlpatterns = [
     path('videos/crear/', views.crear,name='crear_video'),
     path('videos/editar/<int:id_video>', views.editar,name='editar_video'),
     path('videos/eliminar/<int:id_video>', views.eliminar,name='eliminar_video'),
+    path('videos/listado_json/', views.listado_json,name='listado_json'),
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

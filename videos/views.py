@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 
 from videos.forms import VideoForm
@@ -41,3 +41,9 @@ def eliminar(request,id_video):
     video = Video.objects.get(id=id_video)
     video.delete()
     return redirect('listado_video')
+
+def listado_json(request):
+    videos = Video.objects.all().values()
+    videos_list = list(videos)
+    response = {'status':'Ok','code':200,'message':'Listado de videos','data':videos_list}
+    return JsonResponse(response,safe=False)
