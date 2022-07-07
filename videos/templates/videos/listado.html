@@ -10,10 +10,12 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">Aqui podras gestionar tus peliculas</h5>
-                <a href="{% url 'crear_pelicula' %}" class="btn btn-primary">Agregar pelicula</a>
+                <a href="{% url 'crear_video' %}" class="btn btn-primary">Agregar pelicula</a>
             </div>
 
             <br>
+            {% load static %}
+            <img src="{% static '/videos/images/diadelprogramador.jpeg' %}" alt="">
             <table class="table table-hover">
                 <thead>
                     <th>#</th>
@@ -29,11 +31,11 @@
                             <td>{{pelicula.nombre}}</td>
                             <td>{{pelicula.descripcion}}</td>
                             <td>
-                                <img src="{{pelicula.imagen}}" alt="{{pelicula.nombre}}">
+                                <img src="{{pelicula.imagen.url}}" alt="{{pelicula.nombre}}" width="20%">
                             </td>
                             <td>
-                                <a href="{% url 'editar_pelicula' %}" title="Editar" class="btn btn-warning"><i class="fas fa-pencil"></i></a>
-                                <a href="" title="Eliminar" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                <a href="{% url 'editar_video' %}" title="Editar" class="btn btn-warning"><i class="fas fa-pencil"></i></a>
+                                <a href="{% url 'eliminar_video' pelicula.id %}" title="Eliminar" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr> 
                     {% endfor %}
